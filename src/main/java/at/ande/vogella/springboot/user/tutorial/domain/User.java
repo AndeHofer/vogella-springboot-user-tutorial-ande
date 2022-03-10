@@ -16,89 +16,95 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-
-	private long id;
-	private String name = "";
-	private String email = "";
-	private String password = "";
-	private List<String> roles = new ArrayList<>();
-	private Instant lastLogin = Instant.now();
-	private boolean enabled;
-
-	public long getId() {
-		return id;
+	
+	public User() {
+		
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    private long id;
 
-	public String getName() {
-		return name;
-	}
+    private String name = "";
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    private String email = "";
 
-	public String getEmail() {
-		return email;
-	}
+    private String password = "";
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    private List<String> roles = new ArrayList<>();
 
-	public String getPassword() {
-		return password;
-	}
+    private Instant lastLogin = Instant.now();
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    private boolean enabled;
 
-	public List<String> getRoles() {
-		return roles;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setRoles(List<String> roles) {
-		this.roles = roles;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Instant getLastLogin() {
-		return lastLogin;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setLastLogin(Instant lastLogin) {
-		this.lastLogin = lastLogin;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public boolean isEnabled() {
-		return enabled;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	/**
-	 * @param id
-	 * @param name
-	 * @param email
-	 * @param password
-	 * @param roles
-	 * @param lastLogin
-	 * @param enabled
-	 */
-	public User(long id, String name, String email, String password, List<String> roles, Instant lastLogin, boolean enabled) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.roles = roles;
-		this.lastLogin = lastLogin;
-		this.enabled = enabled;
-	}
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public Instant getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Instant lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public User(long id) {
+        this.id = id;
+    }
+    
+    public User(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public User(long id, String name, String email, String password, List<String> roles, Instant lastLogin,
+            boolean enabled) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.lastLogin = lastLogin;
+        this.enabled = enabled;
+    }
 
 }
