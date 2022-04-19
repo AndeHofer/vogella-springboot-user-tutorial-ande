@@ -57,11 +57,12 @@ class UserRestControllerTest {
 	}
 
 	@Test
-	public void getUserById_invalidId_error() {
+	public void ensureThat_getUserById_invalidId_resultsInError() throws Exception {
 		long invalidId = -1;
 		when(userService.findUserById(invalidId)).thenReturn(Mono.empty());
 
-		ResponseSpec rs = webTestClient.get().uri("/user/-1").exchange();
+		ResponseSpec rs = webTestClient.get().uri("/user/" + invalidId).exchange();
+
 		rs.expectStatus().isNotFound();
 	}
 
@@ -75,7 +76,7 @@ class UserRestControllerTest {
 		user.setEmail("jonas.hungershausen@vogella.com");
 		ResponseSpec rs = webTestClient.post().uri("/user").body(BodyInserters.fromValue(user)).exchange();
 
-		rs.expectStatus().isCreated().expectHeader().valueMatches("LOCATION", "^/user/" + id);
+		rs.expectStatus().isCreated().expectHeader().valueEquals("LOCATION", "/user/" + id);
 	}
 
 }

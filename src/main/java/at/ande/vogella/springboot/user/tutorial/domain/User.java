@@ -7,6 +7,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Builder;
@@ -43,6 +45,7 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	@Id
 	private long id;
 
 	private String name = "";
