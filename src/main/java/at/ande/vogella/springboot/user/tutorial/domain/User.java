@@ -9,102 +9,108 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import lombok.Builder;
+
 /**
  * 
  * @author vhhsa02
  * @since (January 2022)
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Builder
 public class User {
-	
+
 	public User() {
-		
+
 	}
 
-    private long id;
+	public User(long id) {
+		this.id = id;
+	}
 
-    private String name = "";
+	public User(long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    private String email = "";
+	public User(long id, String name, String email, String password, List<String> roles, Instant lastLogin, boolean enabled) {
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.roles = roles;
+		this.lastLogin = lastLogin;
+		this.enabled = enabled;
+	}
 
-    private String password = "";
+	private long id;
 
-    private List<String> roles = new ArrayList<>();
+	private String name = "";
 
-    private Instant lastLogin = Instant.now();
+	private String email = "";
 
-    private boolean enabled;
+	private String password = "";
 
-    public String getName() {
-        return name;
-    }
+	private List<String> roles = new ArrayList<>();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	private Instant lastLogin = Instant.now();
 
-    public String getEmail() {
-        return email;
-    }
+	private boolean enabled;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public List<String> getRoles() {
-        return roles;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public Instant getLastLogin() {
-        return lastLogin;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setLastLogin(Instant lastLogin) {
-        this.lastLogin = lastLogin;
-    }
+	public List<String> getRoles() {
+		return roles;
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	public Instant getLastLogin() {
+		return lastLogin;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public void setLastLogin(Instant lastLogin) {
+		this.lastLogin = lastLogin;
+	}
 
-    public User(long id) {
-        this.id = id;
-    }
-    
-    public User(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-    public User(long id, String name, String email, String password, List<String> roles, Instant lastLogin,
-            boolean enabled) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-        this.lastLogin = lastLogin;
-        this.enabled = enabled;
-    }
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 }
