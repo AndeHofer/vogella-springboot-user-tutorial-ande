@@ -26,27 +26,46 @@ import reactor.core.publisher.Mono;
 class UserRestController {
 
 	@Autowired
-    private UserService userService;
+	private UserService userService;
 
-    @GetMapping
-    public Flux<User> getUsers(@RequestParam(name = "limit", required = false, defaultValue = "-1") long limit) {
-        return userService.getUsers(limit);
-    }
+	@GetMapping
+	public Flux<User> getUsers(@RequestParam(name = "limit", required = false, defaultValue = "-1") long limit) {
+		return userService.getUsers(limit);
+	}
 
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<User>> findUserById(@PathVariable("id") long id) {
-        return userService.findUserById(id).map(ResponseEntity::ok)
-                .switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)));
-    }
+	@GetMapping("/{id}")
+	public Mono<ResponseEntity<User>> findUserById(@PathVariable("id") long id) {
+		return userService.findUserById(id).map(ResponseEntity::ok).switchIfEmpty(Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND)));
+	}
 
-    @PostMapping
-    public Mono<ResponseEntity<Object>> newUser(@RequestBody User user, ServerHttpRequest req) {
-        return userService.newUser(user)
-                .map(u -> ResponseEntity.created(URI.create(req.getPath() + "/" + u.getId())).build());
-    }
+	@PostMapping
+	public Mono<ResponseEntity<Object>> newUser(@RequestBody User user, ServerHttpRequest req) {
+		return userService.newUser(user).map(u -> ResponseEntity.created(URI.create(req.getPath() + "/" + u.getId())).build());
+	}
 
-    @DeleteMapping("/{id}")
-    public Mono<Void> deleteUser(@PathVariable("id") int id) {
-        return userService.deleteUser(id);
-    }
+	@DeleteMapping("/{id}")
+	public Mono<Void> deleteUser(@PathVariable("id") int id) {
+		return userService.deleteUser(id);
+	}
+
+	@GetMapping("/search/{email}")
+	/**
+	 * @param email
+	 * @return
+	 *
+	 * @see <a href=
+	 *      "https://www.vogella.com/tutorials/SpringBoot/article.html#exercise-implement-custom-query-methods">27.
+	 *      Exercise: Implement custom query methods</a>
+	 *      
+	 * @since (May 2022)
+	 */
+	public Flux<User> search(@PathVariable("email") String email) {
+		return userService.getByEmail(email);
+	}
+	
+	@PostMapping("/search")
+	public Mono<User> search(@RequestBody User user){
+		return userService.findUserbyExample(user);
+		
+	}
 }

@@ -26,16 +26,16 @@ public class User {
 
 	}
 
-	public User(long id) {
+	public User(Long id) {
 		this.id = id;
 	}
 
-	public User(long id, String name) {
+	public User(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 
-	public User(long id, String name, String email, String password, List<String> roles, Instant lastLogin, boolean enabled) {
+	public User(Long id, String name, String email, String password, List<String> roles, Instant lastLogin, boolean enabled) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -44,18 +44,22 @@ public class User {
 		this.lastLogin = lastLogin;
 		this.enabled = enabled;
 	}
-
 	@Id
-	private long id;
+	private Long id;
 
+	@Builder.Default
 	private String name = "";
 
+	@Builder.Default
 	private String email = "";
-
+	
+	@Builder.Default
 	private String password = "";
 
+	@Builder.Default
 	private List<String> roles = new ArrayList<>();
 
+	@Builder.Default
 	private Instant lastLogin = Instant.now();
 
 	private boolean enabled;
@@ -108,11 +112,11 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

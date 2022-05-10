@@ -71,7 +71,7 @@ class UserRestControllerTest {
 		long id = 42;
 		when(userService.newUser(ArgumentMatchers.any())).thenReturn(Mono.just(User.builder().id(id).build()));
 
-		var user = new User(4);
+		var user = new User(4L);
 		user.setName("Jonas Hungershausen");
 		user.setEmail("jonas.hungershausen@vogella.com");
 		ResponseSpec rs = webTestClient.post().uri("/user").body(BodyInserters.fromValue(user)).exchange();

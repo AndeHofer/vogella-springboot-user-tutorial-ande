@@ -26,7 +26,7 @@ public class UserMongoIntegrationTest {
 
 	@Test
 	public void save_validUserInput_canFoundWithFindAll() throws Exception {
-		userRepository.save(User.builder().id(1).name("Lars Vogel").build()).mergeWith(userRepository.save(User.builder().id(2).name("Simon Scholz").build()))
+		userRepository.save(User.builder().id(1L).name("Lars Vogel").build()).mergeWith(userRepository.save(User.builder().id(2L).name("Simon Scholz").build()))
 				.blockLast();
 
 		Flux<User> users = userRepository.findAll();
